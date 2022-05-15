@@ -1,0 +1,11 @@
+https://www.free-css.com/free-css-templates/page259/news
+https://www.free-css.com/free-css-templates/page271/mediumish
+https://technext.github.io/famms/product.html
+
+Sports, technology 등등 카테고리 있는거 전공책, 교양책, 기타 물품들 등등으로 바꿔서 그대로 쓰기?
+
+상속...
+UserDTO{ id, name, ...}
+StudentDTO extends UserDTO{ student_number, ... }
+이런식으로 DB에서 데이터 받아올때 DTO에 저장하고
+학생, 교수, 외부인, 관리자 등등 나누기?
