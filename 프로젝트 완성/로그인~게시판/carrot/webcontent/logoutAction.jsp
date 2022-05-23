@@ -12,7 +12,7 @@
 	%>
 	<script>
 		alert('·Î±×¾Æ¿ô');
-		location.href="main.jsp";
+		location.href="home.jsp";
 	</script>
 </body>
 </html>
