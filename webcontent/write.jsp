@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
     <link rel="stylesheet" href="css/templatemo-style.css">
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+    
 </head>
 
 <body>
@@ -59,17 +61,13 @@
         <div class="row tm-mb-100">
             <div class="col-lg-12 col-12 mb-5">
                 <h2 class="tm-text-primary mb-5">Write</h2>
-                <form action="writeAction.jsp" method="POST">
+                <form action="writeAction.jsp" method="POST" >
                     <div class="form-group">
                         <input type="text" name="write_title" class="form-control rounded-0" placeholder="Title" required />
                     </div>
-                    <!-- 이미지 임시용 -->
-                    <div class="form-group">
-                        <input type="text" name="img" class="form-control rounded-0" placeholder="Title" required />
-                    </div>
                     
                     <div class="form-group">
-                        <select class="form-control" name="select" name="inquiry">
+                        <select class="form-control" name="select">
                             <option value="-">판매상품</option>
                             <option value="books">전공책</option>
                             <option value="pencil">필기구</option>
@@ -78,8 +76,12 @@
                     </div>
                     <div class="form-group">
                         <textarea rows="12" name="write_content" class="form-control rounded-0" placeholder="Content" required=></textarea>
-                    </div>
-
+						<input id="fileInput" type="file" name="img" onchange="openFile(event)">
+						<input id="img" name="img_data" type="hidden">
+					</div>
+					<img id = "preview">
+					<br>
+					
                     <div class="form-group tm-text-right">
                         <button type="submit" class="btn btn-primary">글쓰기</button>
                     </div>
@@ -87,44 +89,22 @@
             </div>
         </div>
         
-    <footer class="tm-bg-gray pt-5 pb-3 tm-text-gray tm-footer">
-        <div class="container-fluid tm-container-small">
-            <div class="row">
-                <div class="col-lg-6 col-md-12 col-12 px-5 mb-5">
-                    <h3 class="tm-text-primary mb-4 tm-footer-title">About Catalog-Z</h3>
-                    <p>Catalog-Z is free Bootstrap 5 Alpha 2 HTML Template for video and photo web sites. You can freely use this TemplateMo layout for a front-end integration with any kind of CMS web site.</p>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12 px-5 mb-5">
-                    <h3 class="tm-text-primary mb-4 tm-footer-title">Our Links</h3>
-                    <ul class="tm-footer-links pl-0">
-                        <li><a href="#">Advertise</a></li>
-                        <li><a href="#">Support</a></li>
-                        <li><a href="#">Our Company</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12 px-5 mb-5">
-                    <ul class="tm-social-links d-flex justify-content-end pl-0 mb-5">
-                        <li class="mb-2"><a href="https://facebook.com"><i class="fab fa-facebook"></i></a></li>
-                        <li class="mb-2"><a href="https://twitter.com"><i class="fab fa-twitter"></i></a></li>
-                        <li class="mb-2"><a href="https://instagram.com"><i class="fab fa-instagram"></i></a></li>
-                        <li class="mb-2"><a href="https://pinterest.com"><i class="fab fa-pinterest"></i></a></li>
-                    </ul>
-                    <a href="#" class="tm-text-gray text-right d-block mb-2">Terms of Use</a>
-                    <a href="#" class="tm-text-gray text-right d-block">Privacy Policy</a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-8 col-md-7 col-12 px-5 mb-3">
-                    Copyright 2020 Catalog-Z Company. All rights reserved.
-                </div>
-                <div class="col-lg-4 col-md-5 col-12 px-5 text-right">
-                    Designed by <a href="https://templatemo.com" class="tm-text-gray" rel="sponsored" target="_parent">TemplateMo</a>
-                </div>
-            </div>
-        </div>
-    </footer>
     
-    <script src="js/plugins.js"></script>
+    <script>
+	  var openFile = function(event) {
+	    var input = event.target;
+	
+	    var reader = new FileReader();
+	    reader.onload = function(){
+	      var dataURL = reader.result;
+	      var output = document.getElementById('preview');
+	      output.src = dataURL;
+	      img_data = document.getElementById('img');
+		  img_data.value=dataURL;
+	    };
+	    reader.readAsDataURL(input.files[0]);
+	  };
+	  
+</script>
 </body>
 </html>

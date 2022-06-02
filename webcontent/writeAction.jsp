@@ -7,7 +7,9 @@
 <jsp:setProperty name="user" property="write_title" />
 <jsp:setProperty name="user" property="write_content" />
 <jsp:setProperty name="user" property="img" />
+<jsp:setProperty name="user" property="img_data" />
 <jsp:setProperty name="user" property="select" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,23 +41,23 @@
 			}else{
 				// 정상적으로 입력이 되었다면 글쓰기 로직을 수행한다
 				wtDAO wtDAO = new wtDAO();
-				int result = wtDAO.write(user.getWrite_title(), write_id, user.getWrite_content(), user.getImg(), user.getSelect());
+				int result = wtDAO.write(user.getWrite_title(), write_id, user.getWrite_content(), user.getImg(), user.getImg_data(), user.getSelect());
 				// 데이터베이스 오류인 경우
-				System.out.println(user.getWrite_title());
-				System.out.println(user.getImg());
-				System.out.println(user.getSelect());
+				PrintWriter script = response.getWriter();
+				script.println("<script>");
+				script.println("alert("+user.getImg_data()+")");
+				script.println("history.back()");
+				script.println("</script>");
 				if(result == -1){
-					PrintWriter script = response.getWriter();
 					script.println("<script>");
 					script.println("alert('글쓰기에 실패했습니다')");
 					script.println("history.back()");
 					script.println("</script>");
 				// 글쓰기가 정상적으로 실행되면 알림창을 띄우고 게시판 메인으로 이동한다
 				}else {
-					PrintWriter script = response.getWriter();
 					script.println("<script>");
 					script.println("alert('글쓰기 성공')");
-					script.println("location.href='bbs.jsp'");
+					script.println("location.href='board.jsp'");
 					script.println("</script>");
 				}
 			}

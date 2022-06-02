@@ -21,8 +21,15 @@
 		id=(String)session.getAttribute("id");
 	}
 	wtDAO wtDAO = new wtDAO();
-	final ResultSet rs = wtDAO.getWt();
-	%>
+	ResultSet rs;
+	if(request.getParameter("search") != null){
+		String search = request.getParameter("search");
+		rs = wtDAO.getSearchWt(search);
+	}
+	else{
+		rs = wtDAO.getWt();
+	}
+		%>
     <!-- Page Loader -->
     <div id="loader-wrapper">
         <div id="loader"></div>
@@ -60,8 +67,8 @@
     </nav>
 
     <div class="tm-hero d-flex justify-content-center align-items-center" data-parallax="scroll" data-image-src="img/hero.jpg">
-        <form class="d-flex tm-search-form">
-            <input class="form-control tm-search-input" type="search" placeholder="Search" aria-label="Search">
+        <form class="d-flex tm-search-form" method="GET">
+            <input class="form-control tm-search-input" type="search" placeholder="Search" aria-label="Search" name="search">
             <button class="btn btn-outline-success tm-search-btn" type="submit">
                 <i class="fas fa-search"></i>
             </button>
@@ -83,7 +90,7 @@
         	<%while(rs.next()){ %>
 	        	<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
 	                <figure class="effect-ming tm-video-item">
-	                    <img src="<%=rs.getString("img") %>" alt="Image" class="img-fluid">
+	                    <img src="<%=rs.getString("img_data") %>" alt="Image" class="img-fluid">
 	                    <figcaption class="d-flex align-items-center justify-content-center">
 	                        <h2><%=rs.getString("write_title")%></h2>
 	                        <a href="viewer.jsp?num=<%=rs.getInt("write_num")%>">View more</a>
