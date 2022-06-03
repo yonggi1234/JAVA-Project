@@ -67,7 +67,15 @@
                     </div>
                     
                     <div class="form-group">
-                        <select class="form-control" name="select">
+                        <select class="form-control" id="category" name="category" onchange="viewProduct()">
+                            <option value="-">게시판</option>
+                            <option value="product">중고거래</option>
+                            <option value="promotion">홍보</option>
+                            <option value="information">정보</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" id="select" name="select" style="display:none" onchange="viewBooks()">
                             <option value="-">판매상품</option>
                             <option value="books">전공책</option>
                             <option value="pencil">필기구</option>
@@ -75,6 +83,13 @@
                         </select>
                     </div>
                     <div class="form-group">
+                    	<select class="form-control" id="use" name="use" style="display:none">
+                            <option value="-">필기여부</option>
+                            <option value="many">대부분 필기함</option>
+                            <option value="soso">가끔 필기한곳 있음</option>
+                            <option value="no">필기안함</option>
+                        </select>
+                        <br>
                         <textarea rows="12" name="write_content" class="form-control rounded-0" placeholder="Content" required=></textarea>
 						<input id="fileInput" type="file" name="img" onchange="openFile(event)">
 						<input id="img" name="img_data" type="hidden">
@@ -105,6 +120,25 @@
 	    reader.readAsDataURL(input.files[0]);
 	  };
 	  
+	  function viewProduct(){
+		  var sel = document.getElementById('category');
+		  if(sel.value=="product"){
+			  document.getElementById('select').style.display="";
+		  }
+		  else{
+			  document.getElementById('select').style.display="none";
+		  }
+	  }
+	  
+	  function viewBooks(){
+		  var sel = document.getElementById('select');
+		  if(sel.value=="books"){
+			  document.getElementById('use').style.display="";
+		  }
+		  else{
+			  document.getElementById('use').style.display="none";
+		  }
+	  } 
 </script>
 </body>
 </html>

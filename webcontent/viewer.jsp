@@ -29,6 +29,7 @@ https://templatemo.com/tm-556-catalog-z
 	}
 	wtDAO wtDAO = new wtDAO();
 	String num = request.getParameter("num");
+	wtDAO.upView(num);
 	final ResultSet rs = wtDAO.getOneWt(num);
 	rs.next();
 	%>

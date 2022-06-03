@@ -22,9 +22,18 @@
 	}
 	wtDAO wtDAO = new wtDAO();
 	ResultSet rs;
+	String category = null;
 	if(request.getParameter("search") != null){
 		String search = request.getParameter("search");
 		rs = wtDAO.getSearchWt(search);
+	}
+	else if(request.getParameter("select") != null){
+		String select = request.getParameter("select");
+		rs = wtDAO.getCategoryWt(select);
+	}
+	else if(request.getParameter("category") != null){
+		category = request.getParameter("category");
+		rs = wtDAO.getCateWt(category);
 	}
 	else{
 		rs = wtDAO.getWt();
@@ -53,13 +62,13 @@
                     <a class="nav-link nav-link-1 active" aria-current="page" href="home.jsp">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-3" href="board.jsp">board</a>
+                    <a class="nav-link nav-link-3" href="board.jsp?category=product">product</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-4" href="chat.jsp">chat</a>
+                    <a class="nav-link nav-link-4" href="board.jsp?category=promotion">promotion</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-4" href="user.jsp">user</a>
+                    <a class="nav-link nav-link-4" href="board.jsp?category=information">information</a>
                 </li>
             </ul>
             </div>
@@ -78,8 +87,17 @@
     <div class="container-fluid tm-container-content tm-mt-60">
         <div class="row mb-4">
             <h2 class="col-6 tm-text-primary">
-                Products
+                <%if(category!=null){ %>
+                	<%=category %>
+				<% }
+					else{ %>
+						board
+					<%}
+                %>
             </h2>
+	        <a href="board.jsp?select=books">books</a>
+	        <a href="board.jsp?select=pencil">pencil</a>
+	        <a href="board.jsp?select=etc">etc</a>
             <div class="col-6 d-flex justify-content-end align-items-center">
                 <form action="" class="tm-text-primary">
                     Page <input type="text" value="1" size="1" class="tm-input-paging tm-text-primary"> of 200

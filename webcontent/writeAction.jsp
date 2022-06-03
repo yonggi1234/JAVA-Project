@@ -4,11 +4,14 @@
     pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8"); %>
 <jsp:useBean id="user" class="user.wt" scope="page" />
+<jsp:setProperty name="user" property="category" />
 <jsp:setProperty name="user" property="write_title" />
 <jsp:setProperty name="user" property="write_content" />
 <jsp:setProperty name="user" property="img" />
 <jsp:setProperty name="user" property="img_data" />
 <jsp:setProperty name="user" property="select" />
+<jsp:setProperty name="user" property="use" />
+
 
 <!DOCTYPE html>
 <html>
@@ -41,13 +44,10 @@
 			}else{
 				// 정상적으로 입력이 되었다면 글쓰기 로직을 수행한다
 				wtDAO wtDAO = new wtDAO();
-				int result = wtDAO.write(user.getWrite_title(), write_id, user.getWrite_content(), user.getImg(), user.getImg_data(), user.getSelect());
+				int result = wtDAO.write(user.getCategory(), user.getWrite_title(), write_id, user.getWrite_content(), 
+						user.getImg(), user.getImg_data(), user.getSelect(), user.getUse());
 				// 데이터베이스 오류인 경우
 				PrintWriter script = response.getWriter();
-				script.println("<script>");
-				script.println("alert("+user.getImg_data()+")");
-				script.println("history.back()");
-				script.println("</script>");
 				if(result == -1){
 					script.println("<script>");
 					script.println("alert('글쓰기에 실패했습니다')");

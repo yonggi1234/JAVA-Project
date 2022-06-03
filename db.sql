@@ -8,16 +8,18 @@ CREATE TABLE `user`(
 	);
 INSERT INTO user(id, password, name) VALUES('t', 't', 't');
 CREATE TABLE `wt`(
+	`category` varchar(50) NOT NULL, 
 	`write_id` varchar(50) NOT NULL,
 	`write_title` varchar(50) NOT NULL,
 	`write_content` varchar(50) NOT NULL,
 	`img` varchar(50) DEFAULT NULL,
 	`img_data` MediumBLOB DEFAULT NULL,
-	`select` varchar(50) NOT NULL,
+	`sel` varchar(50) DEFAULT NULL, 
+	`use` varchar(30) DEFAULT NULL,
 	`date` datetime NOT NULL,
 	`view` int(11) DEFAULT 0,
 	`write_num` int(11) NOT NULL
 	);
-INSERT INTO wt VALUES('t', 'test', 'tes', './img/hero.jpg', 'a', 'books', '2022-02-02 22:22:22', 0, 1);
-INSERT INTO wt VALUES('t', 'test2', 'tes2', './img/hero.jpg', 'a', 'books', '2022-02-02 22:22:22', 0, 2);
-INSERT INTO wt VALUES('t', 'test3', 'tes3', './img/hero.jpg', 'a', 'books', '2022-02-02 22:22:22', 0, 3);
+INSERT INTO wt VALUES('product', 't', 'test', 'tes', './img/hero.jpg', 'null', 'books', 'many', '2022-02-02 22:22:22', 0, 1);
+INSERT INTO wt VALUES('product', 't', 'test2', 'tes2', './img/hero.jpg', 'null', 'books', 'soso', '2022-02-02 22:22:22', 0, 2);
+INSERT INTO wt VALUES('product', 't', 'test3', 'tes3', './img/hero.jpg', 'null', 'books', 'no', '2022-02-02 22:22:22', 0, 3);

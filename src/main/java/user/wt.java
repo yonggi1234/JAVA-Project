@@ -2,6 +2,7 @@ package user;
 
 public class wt {
 
+	private String category;
 	private String write_id;
 	private String write_title;
 	private String write_content;
@@ -9,9 +10,16 @@ public class wt {
 	private String img;
 	private String img_data;
 	private String select;
+	private String use;
 	private int view;
 	private int write_num;
 	
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
 	public String getWrite_id() {
 		return write_id;
 	}
@@ -65,6 +73,12 @@ public class wt {
 	}
 	public void setSelect(String select) {
 		this.select = select;
+	}
+	public String getUse() {
+		return use;
+	}
+	public void setUse(String use) {
+		this.use = use;
 	}
 	
 }

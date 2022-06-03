@@ -55,20 +55,22 @@ public class wtDAO {
 	}
 	
 	//글쓰기 메소드
-	public int write(String write_title, String write_id, String write_content, String write_img, String img_data, String write_select) {
-		String sql = "insert into wt values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	public int write(String category, String write_title, String write_id, String write_content, 
+			String write_img, String img_data, String write_select, String use) {
+		String sql = "insert into wt values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
-			System.out.println(img_data);
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, write_id);
-			pstmt.setString(2, write_title);
-			pstmt.setString(3, write_content);
-			pstmt.setString(4, write_img);
-			pstmt.setString(5, img_data);
-			pstmt.setString(6, write_select);
-			pstmt.setString(7, getDate());
-			pstmt.setInt(8, 0);
-			pstmt.setInt(9, getNext());
+			pstmt.setString(1, category);
+			pstmt.setString(2, write_id);
+			pstmt.setString(3, write_title);
+			pstmt.setString(4, write_content);
+			pstmt.setString(5, write_img);
+			pstmt.setString(6, img_data);
+			pstmt.setString(7, write_select);
+			pstmt.setString(8, use);
+			pstmt.setString(9, getDate());
+			pstmt.setInt(10, 0);
+			pstmt.setInt(11, getNext());
 			return pstmt.executeUpdate();
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -80,6 +82,40 @@ public class wtDAO {
 		String sql = "select * from wt";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				rs.previous();
+				return rs;
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		//return (ResultSet); //데이터베이스 오류 어떻게해야하지
+		return rs;
+	}
+	
+	public ResultSet getCategoryWt(String select) {
+		String sql = "select * from wt where sel = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, select);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				rs.previous();
+				return rs;
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		//return (ResultSet); //데이터베이스 오류 어떻게해야하지
+		return rs;
+	}
+	
+	public ResultSet getCateWt(String category) {
+		String sql = "select * from wt where category = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, category);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				rs.previous();
@@ -110,15 +146,12 @@ public class wtDAO {
 	}
 	
 	public ResultSet getOneWt(String num) {
-		System.out.println(num);
 		String sql = "select * from wt where write_num=?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, num);
 			rs = pstmt.executeQuery();
-			System.out.println(rs.getString(1));
 			if(rs.getString(1)!=null) {
-				System.out.println("yess");
 				return rs;
 			}
 		}catch (Exception e) {
@@ -126,5 +159,42 @@ public class wtDAO {
 		}
 		//return (ResultSet); //데이터베이스 오류 어떻게해야하지
 		return rs;
+	}
+	
+	
+	public int getView(String num) {
+		String sql = "select view from wt where write_num=?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt("view")+1;
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		//return (ResultSet); //데이터베이스 오류 어떻게해야하지
+		return 0;
+	}
+	
+	public String upView(String num) {
+		int viewNum = getView(num);
+		System.out.println(viewNum);
+		String sql = "update wt set view=? where write_num=?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, viewNum);
+			pstmt.setString(2, num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				rs.previous();
+				return "Success";
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		//return (ResultSet); //데이터베이스 오류 어떻게해야하지
+		return "Fail";
 	}
 }
