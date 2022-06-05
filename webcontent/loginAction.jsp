@@ -31,7 +31,6 @@
 			int result = userDAO.login(user.getId(), user.getPassword());
 			 if(result == 1){
 				session.setAttribute("id",user.getId());
-				session.setAttribute("category",user.getCategory());
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('로그인 성공')");

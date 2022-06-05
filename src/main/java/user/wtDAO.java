@@ -56,21 +56,21 @@ public class wtDAO {
 	
 	//글쓰기 메소드
 	public int write(String category, String write_title, String write_id, String write_content, 
-			String write_img, String img_data, String write_select, String use,String address) {
-		String sql = "insert into wt values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+			String write_img, String img_data, String write_select, String use) {
+		String sql = "insert into wt values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, category);
 			pstmt.setString(2, write_id);
 			pstmt.setString(3, write_title);
 			pstmt.setString(4, write_content);
-			pstmt.setString(5, img_data);
-			pstmt.setString(6, write_select);
-			pstmt.setString(7, use);
-			pstmt.setString(8, getDate());
-			pstmt.setInt(9, 0);
-			pstmt.setInt(10, getNext());
-			pstmt.setString(11, address);
+			pstmt.setString(5, write_img);
+			pstmt.setString(6, img_data);
+			pstmt.setString(7, write_select);
+			pstmt.setString(8, use);
+			pstmt.setString(9, getDate());
+			pstmt.setInt(10, 0);
+			pstmt.setInt(11, getNext());
 			return pstmt.executeUpdate();
 		}catch (Exception e) {
 			e.printStackTrace();

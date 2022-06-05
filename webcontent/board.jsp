@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page import = "java.sql.ResultSet"%>
-<%@page import="user.UserDAO"%>
+<%@ page import = "user.wt" %>
 <%@ page import = "user.wtDAO" %>
 <!DOCTYPE html>
 <html>
@@ -16,16 +16,10 @@
 </head>
 <body>
 	<%
-	UserDAO userDAO = new UserDAO();
 	String id=null;
-	ResultSet nx=null;
-	String ad=null;
-	String block=null;
 	if(session.getAttribute("id")!=null){
 		id=(String)session.getAttribute("id");
-		 nx= userDAO.getAddress(id);
-		 block=(String)session.getAttribute("block");
-	}	
+	}
 	wtDAO wtDAO = new wtDAO();
 	ResultSet rs;
 	String category = null;
@@ -44,8 +38,15 @@
 	else{
 		rs = wtDAO.getWt();
 	}
-	%>
-    
+		%>
+    <!-- Page Loader -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+
+    </div>
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
@@ -61,16 +62,19 @@
                     <a class="nav-link nav-link-1 active" aria-current="page" href="home.jsp">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-3" href="board.jsp">board</a>
+                    <a class="nav-link nav-link-3" href="board.jsp?category=product">product</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-4" href="user.jsp">user</a>
+                    <a class="nav-link nav-link-4" href="board.jsp?category=promotion">promotion</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-4" href="board.jsp?category=information">information</a>
                 </li>
             </ul>
             </div>
         </div>
     </nav>
-    
+
     <div class="tm-hero d-flex justify-content-center align-items-center" data-parallax="scroll" data-image-src="img/hero.jpg">
         <form class="d-flex tm-search-form" method="GET">
             <input class="form-control tm-search-input" type="search" placeholder="Search" aria-label="Search" name="search">
@@ -82,36 +86,29 @@
 
     <div class="container-fluid tm-container-content tm-mt-60">
         <div class="row mb-4">
-         <%if(id!=null){ 
-        	 while(nx.next()){
-        		 ad=nx.getString("address");
-         %>	
-            	<h2 class="col-6 tm-text-primary">
-           			
-                <%=nx.getString("address")%>
-            </h2> 
+            <h2 class="col-6 tm-text-primary">
+                <%if(category!=null){ %>
+                	<%=category %>
+				<% }
+					else{ %>
+						board
 					<%}
-        	 }else{ %>
-        			<h2 class="col-6 tm-text-primary">추천 상품</h2>	 
-        		 <%}
                 %>
+            </h2>
+	        <a href="board.jsp?select=books">books</a>
+	        <a href="board.jsp?select=pencil">pencil</a>
+	        <a href="board.jsp?select=etc">etc</a>
+            <div class="col-6 d-flex justify-content-end align-items-center">
+                <form action="" class="tm-text-primary">
+                    Page <input type="text" value="1" size="1" class="tm-input-paging tm-text-primary"> of 200
+                </form>
+            </div>
         </div>
-        <h3>
-        </h3>
-        <div class="row tm-mb-90 tm-gallery">    
-        	<%while(rs.next()){ 
-        		if(!rs.getString("write_id").equals(block)){
-        			if(ad==null||ad.equals(rs.getString("address"))){
-        			%>
-            	<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
+        <div class="row tm-mb-90 tm-gallery">
+        	<%while(rs.next()){ %>
+	        	<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
 	                <figure class="effect-ming tm-video-item">
-	                    <%
-	                    if(rs.getString("img_data")!=null){
-	                    %>
 	                    <img src="<%=rs.getString("img_data") %>" alt="Image" class="img-fluid">
-	                    <%}else{ %>
-	                    <img src="img/none.png" alt="Image" class="img-fluid">
-	                    <%}%>
 	                    <figcaption class="d-flex align-items-center justify-content-center">
 	                        <h2><%=rs.getString("write_title")%></h2>
 	                        <a href="viewer.jsp?num=<%=rs.getInt("write_num")%>">View more</a>
@@ -122,13 +119,23 @@
 	                    <span><%=rs.getInt("view") %></span>
 	                </div>
 	            </div>
-            <%} } }%>
+            <%} %>
             <a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
             
-        </div> 
-        <!-- row -->
-
-    <!-- container-fluid, tm-container-content -->
+        </div> <!-- row -->
+        <div class="row tm-mb-90">
+            <div class="col-12 d-flex justify-content-between align-items-center tm-paging-col">
+                <a href="javascript:void(0);" class="btn btn-primary tm-btn-prev mb-2 disabled">Previous</a>
+                <div class="tm-paging d-flex">
+                    <a href="javascript:void(0);" class="active tm-paging-link">1</a>
+                    <a href="javascript:void(0);" class="tm-paging-link">2</a>
+                    <a href="javascript:void(0);" class="tm-paging-link">3</a>
+                    <a href="javascript:void(0);" class="tm-paging-link">4</a>
+                </div>
+                <a href="javascript:void(0);" class="btn btn-primary tm-btn-next">Next Page</a>
+            </div>            
+        </div>
+    </div> <!-- container-fluid, tm-container-content -->
 
     <footer class="tm-bg-gray pt-5 pb-3 tm-text-gray tm-footer">
         <div class="container-fluid tm-container-small">

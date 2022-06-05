@@ -69,7 +69,7 @@ https://templatemo.com/tm-556-catalog-z
         </div>
     </nav>
 
-    <div class="tm-hero d-flex justify-content-center align-items-center" data-parallax="scroll" data-image-src="img/img-03.jp"></div>
+    <div class="tm-hero d-flex justify-content-center align-items-center" data-parallax="scroll" data-image-src="img/hero.jpg"></div>
 
 
 
@@ -81,7 +81,7 @@ https://templatemo.com/tm-556-catalog-z
         </div>
         <div class="row tm-mb-74 tm-row-1640">            
             <div class="col-lg-5 col-md-6 col-12 mb-3">
-                <img src="img/img-03.jpg" alt="Image" class="img-fluid">
+                <img src=<%=rs.getString("img_data") %> alt="Image" class="img-fluid">
             </div>
             <div class="col-lg-7 col-md-6 col-12">
                 <div class="tm-about-img-text">

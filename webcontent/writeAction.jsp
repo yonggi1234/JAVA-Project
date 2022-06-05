@@ -11,7 +11,6 @@
 <jsp:setProperty name="user" property="img_data" />
 <jsp:setProperty name="user" property="select" />
 <jsp:setProperty name="user" property="use" />
-<jsp:setProperty name="user" property="address" />
 
 
 <!DOCTYPE html>
@@ -36,7 +35,7 @@
 			script.println("</script>");
 		}else{
 			// 입력이 안 된 부분이 있는지 체크한다
-			if(user.getWrite_title() == null || user.getWrite_content() == null|| user.getAddress()==null){
+			if(user.getWrite_title() == null || user.getWrite_content() == null){
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('입력이 안 된 사항이 있습니다')");
@@ -46,7 +45,7 @@
 				// 정상적으로 입력이 되었다면 글쓰기 로직을 수행한다
 				wtDAO wtDAO = new wtDAO();
 				int result = wtDAO.write(user.getCategory(), user.getWrite_title(), write_id, user.getWrite_content(), 
-						user.getImg(), user.getImg_data(), user.getSelect(), user.getUse(),user.getAddress());
+						user.getImg(), user.getImg_data(), user.getSelect(), user.getUse());
 				// 데이터베이스 오류인 경우
 				PrintWriter script = response.getWriter();
 				if(result == -1){

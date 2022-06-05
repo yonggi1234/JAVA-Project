@@ -47,79 +47,20 @@ public class UserDAO {
 	}
 	/*회원가입*/
 	public int join(userDATA user) {
-		  String sql = "insert into user values(?, ?, ?, ?, ?, ?,?)";
+		  String sql = "insert into user values(?, ?, ?, ?, ?, ?, ?)";
 		  try {
 		    pstmt = con.prepareStatement(sql);
 		    pstmt.setString(1, user.getId());
 		    pstmt.setString(2, user.getPassword());
 		    pstmt.setString(3, user.getPhoneNumber());
 		    pstmt.setString(4, user.getAddress());
-		    pstmt.setString(5, user.getName());
-		    pstmt.setString(6, "None");
-		    pstmt.setString(7, "");
+		    pstmt.setString(5, user.getEmail());
+		    pstmt.setString(6, user.getSubject());
+		    pstmt.setString(7, user.getName());
 		    return pstmt.executeUpdate();
 		  }catch (Exception e) {
 		 	e.printStackTrace();
 		  }
 		  return -1;
-	}
-
-/*회원 탈퇴*/
-public int withdrawl(String id) {
-  String sql = ""
-  		+ "delete from user where id =?";
-  try {
-    pstmt = con.prepareStatement(sql);
-    pstmt.setString(1, id);
-	res=pstmt.executeQuery();
-    return pstmt.executeUpdate();
-  }catch (Exception e) {
- 	e.printStackTrace();
-  }
-  return -1;
-}
-
-/*카테고리 추가*/
-public int category(String id,String category) {
-  String sql = ""
-  		+ "UPDATE user SET category=? WHERE id=?;";
-  try {
-    pstmt = con.prepareStatement(sql);
-    pstmt.setString(1, category);
-    pstmt.setString(2, id);
-    
-	res=pstmt.executeQuery();
-    return pstmt.executeUpdate();
-  }catch (Exception e) {
- 	e.printStackTrace();
-  }
-  return -1;
-}
-
-
-public ResultSet getAddress(String id) {
-	String sql = "select * from user where id=?";
-	try {
-		PreparedStatement pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, id);
-		res=pstmt.executeQuery();
-		return res;
-	}catch (Exception e) {
-		e.printStackTrace();
-	}
-	return res;
-}
-
-public int block(String id, String block){
-	  String sql ="UPDATE user SET block=? WHERE id=?";
-	  try {
-	    pstmt = con.prepareStatement(sql);
-	    pstmt.setString(1, block);
-	    pstmt.setString(2, id);
-	    return pstmt.executeUpdate();
-	  }catch (Exception e) {
-	 	e.printStackTrace();
-	  }
-	  return -1;
-	}
+		}
 }

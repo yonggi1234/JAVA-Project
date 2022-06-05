@@ -9,9 +9,9 @@ public class userDATA {
 	//개인정보
 	private String phoneNumber;
 	private String address;
-	//판매 상품 종류
-	private String category;
-	private String block;	
+	private String email;
+	//분류 - 학생, 교수
+	private String subject;
 	
 	public String getId() {
 		return id;
@@ -43,16 +43,18 @@ public class userDATA {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getCategory() {
-		return category;
+	public String getEmail() {
+		return email;
 	}
-	public void setCategory(String category) {
-		this.category = category;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public String getBlock() {
-		return block;
+	public String getSubject() {
+		return subject;
 	}
-	public void setBlock(String block) {
-		this.block = block;
-	}	
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+	
+	
 }

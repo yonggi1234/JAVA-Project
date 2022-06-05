@@ -24,9 +24,9 @@
 	%>
 	<nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.html">
                 <i class="fas fa-film mr-2"></i>
-                KUOM
+                Catalog-Z
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
@@ -34,18 +34,24 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link nav-link-1 active" aria-current="page" href="home.jsp">Home</a>
+                    <a class="nav-link nav-link-1" href="index.html">Photos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-3" href="board.jsp">board</a>
+                    <a class="nav-link nav-link-2" href="videos.html">Videos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-4" href="user.jsp">user</a>
+                    <a class="nav-link nav-link-3" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-4 active" aria-current="page" href="contact.html">Contact</a>
                 </li>
             </ul>
             </div>
         </div>
-    </nav>	
+    </nav>
+    
+	
+	
 	<!-- 네비게이션 영역 끝 -->
 	
 	<!-- 게시판 글쓰기 양식 영역 시작 -->
@@ -66,14 +72,6 @@
                             <option value="product">중고거래</option>
                             <option value="promotion">홍보</option>
                             <option value="information">정보</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select class="form-control" id="address" name="address" onchange="viewProduct()">
-                            <option value="">판매 장소</option>
-                            <option value="수원시">수원시</option>
-                            <option value="화성시">화성시</option>
-                            <option value="오산시">오산시</option>
                         </select>
                     </div>
                     <div class="form-group">

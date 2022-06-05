@@ -13,8 +13,6 @@ public class wt {
 	private String use;
 	private int view;
 	private int write_num;
-	private String address;
-	
 	
 	public String getCategory() {
 		return category;
@@ -81,12 +79,6 @@ public class wt {
 	}
 	public void setUse(String use) {
 		this.use = use;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
 	}
 	
 }
