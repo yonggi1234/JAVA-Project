@@ -9,8 +9,6 @@
 <jsp:setProperty name="user" property="password" />
 <jsp:setProperty name="user" property="phoneNumber" />
 <jsp:setProperty name="user" property="address" />
-<jsp:setProperty name="user" property="email" />
-<jsp:setProperty name="user" property="subject" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +31,7 @@
 		script.println("location.href='home.jsp'");
 		script.println("</script>");
 		}
-		if(user.getId() == null || user.getPassword() == null || user.getName()==null){
+		if(user.getId() == null || user.getPassword() == null || user.getName()==null||user.getAddress()==null){
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('입력이 안 된 사항이 있습니다')");
@@ -50,6 +48,7 @@
 				script.println("</script>");
 			}else {
 				session.setAttribute("id",user.getId());
+				session.setAttribute("category",user.getCategory());
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('회원가입 성공')");

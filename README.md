@@ -6,7 +6,6 @@
 
 ### install
 * mariadb 10.2(설치 필요)
-* apache Tomcat 9.0(설치 필요)
 * tool - eclipse
 * mariadb-java-client-2.6.2.jar
 * font - https://www.free-css.com/free-css-templates/page278/catalog-z

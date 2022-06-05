@@ -13,15 +13,6 @@
 
 <body>
 <body>
-
-    <!-- Page Loader -->
-    <div id="loader-wrapper">
-        <div id="loader"></div>
-
-        <div class="loader-section section-left"></div>
-        <div class="loader-section section-right"></div>
-
-    </div>
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.html">
@@ -63,11 +54,6 @@
                     <div>
                         <input type="password" name="password" class="form-control rounded-0" placeholder="Password" required />
                     </div>
-                    <!-- 
-                    <div class="form-group">
-                        <textarea rows="8" name="message" class="form-control rounded-0" placeholder="Message" required=></textarea>
-                    </div>
-                    -->
 
                     <div class="form-group tm-text-right">
                         <button type="submit" class="btn btn-primary">login</button>
@@ -77,38 +63,7 @@
         </div>
         <div class="row tm-mb-50"></div>
         <div class="row tm-mb-50"></div>
-        <div class="row tm-mb-74 tm-people-row">
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-5">
-                <img src="img/people-1.jpg" alt="Image" class="mb-4 img-fluid">
-                <h2 class="tm-text-primary mb-4">Ryan White</h2>
-                <h3 class="tm-text-secondary h5 mb-4">Chief Executive Officer</h3>
-                <p class="mb-4">
-                    Mauris ante tellus, feugiat nec metus non, bibendum semper velit. Praesent laoreet urna id tristique fermentum. Morbi venenatis dui quis diam mollis pellentesque.
-                </p>
-                <ul class="tm-social pl-0 mb-0">
-                    <li><a href="https://facebook.com"><i class="fab fa-facebook"></i></a></li>
-                    <li><a href="https://twitter.com"><i class="fab fa-twitter"></i></a></li>
-                    <li><a href="https://linkedin.com"><i class="fab fa-linkedin"></i></a></li>
-                </ul>
-            </div>
-            
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-5"></div>
-            
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-5">
-                <img src="img/people-3.jpg" alt="Image" class="mb-4 img-fluid">
-                <h2 class="tm-text-primary mb-4">Johnny Brief</h2>
-                <h3 class="tm-text-secondary h5 mb-4">Accounting Executive</h3>
-                <p class="mb-4">
-                    Sed faucibus nec velit finibus accumsan. Sed varius augue et leo pharetra, in varius lacus eleifend. Quisque ut eleifend lacus.
-                </p>
-                <ul class="tm-social pl-0 mb-0">
-                    <li><a href="https://facebook.com"><i class="fab fa-facebook"></i></a></li>
-                    <li><a href="https://twitter.com"><i class="fab fa-twitter"></i></a></li>
-                    <li><a href="https://linkedin.com"><i class="fab fa-linkedin"></i></a></li>
-                </ul>
-            </div>
-            
-        </div>
+        
         </div>
     </div> <!-- container-fluid, tm-container-content -->
 

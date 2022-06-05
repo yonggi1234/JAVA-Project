@@ -17,18 +17,21 @@
 <body>
 	<%
 	String id=null;
+	String block=null;
 	if(session.getAttribute("id")!=null){
 		id=(String)session.getAttribute("id");
-	}
+		block =(String)session.getAttribute("block");
+	}	
 	wtDAO wtDAO = new wtDAO();
 	ResultSet rs;
+	
 	String category = null;
 	if(request.getParameter("search") != null){
 		String search = request.getParameter("search");
 		rs = wtDAO.getSearchWt(search);
 	}
-	else if(request.getParameter("select") != null){
-		String select = request.getParameter("select");
+	else if(session.getAttribute("category")!=null){
+		String select =(String)session.getAttribute("category");
 		rs = wtDAO.getCategoryWt(select);
 	}
 	else if(request.getParameter("category") != null){
@@ -39,14 +42,6 @@
 		rs = wtDAO.getWt();
 	}
 		%>
-    <!-- Page Loader -->
-    <div id="loader-wrapper">
-        <div id="loader"></div>
-
-        <div class="loader-section section-left"></div>
-        <div class="loader-section section-right"></div>
-
-    </div>
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
@@ -59,7 +54,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link nav-link-1 active" aria-current="page" href="home.jsp">Home</a>
+                    <a class="nav-link nav-link-1" aria-current="page" href="home.jsp">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link nav-link-3" href="board.jsp?category=product">product</a>
@@ -91,24 +86,25 @@
                 	<%=category %>
 				<% }
 					else{ %>
-						board
+						전체 글
 					<%}
                 %>
-            </h2>
-	        <a href="board.jsp?select=books">books</a>
-	        <a href="board.jsp?select=pencil">pencil</a>
-	        <a href="board.jsp?select=etc">etc</a>
-            <div class="col-6 d-flex justify-content-end align-items-center">
-                <form action="" class="tm-text-primary">
-                    Page <input type="text" value="1" size="1" class="tm-input-paging tm-text-primary"> of 200
-                </form>
-            </div>
+            </h2> 
         </div>
-        <div class="row tm-mb-90 tm-gallery">
-        	<%while(rs.next()){ %>
+         <div class="row tm-mb-90 tm-gallery">
+        	<%while(rs.next()){ 
+        		if(!rs.getString("write_id").equals(block)){
+        	%>
 	        	<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
 	                <figure class="effect-ming tm-video-item">
+	                    <%
+	                    if(rs.getString("write_id")==block){break;}
+	                    if(rs.getString("img_data")!=null){
+	                    %>
 	                    <img src="<%=rs.getString("img_data") %>" alt="Image" class="img-fluid">
+	                    <%}else{ %>
+	                    <img src="img/none.png" alt="Image" class="img-fluid">
+	                    <%} %>
 	                    <figcaption class="d-flex align-items-center justify-content-center">
 	                        <h2><%=rs.getString("write_title")%></h2>
 	                        <a href="viewer.jsp?num=<%=rs.getInt("write_num")%>">View more</a>
@@ -119,22 +115,11 @@
 	                    <span><%=rs.getInt("view") %></span>
 	                </div>
 	            </div>
-            <%} %>
+            <%} }%>
             <a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
             
         </div> <!-- row -->
-        <div class="row tm-mb-90">
-            <div class="col-12 d-flex justify-content-between align-items-center tm-paging-col">
-                <a href="javascript:void(0);" class="btn btn-primary tm-btn-prev mb-2 disabled">Previous</a>
-                <div class="tm-paging d-flex">
-                    <a href="javascript:void(0);" class="active tm-paging-link">1</a>
-                    <a href="javascript:void(0);" class="tm-paging-link">2</a>
-                    <a href="javascript:void(0);" class="tm-paging-link">3</a>
-                    <a href="javascript:void(0);" class="tm-paging-link">4</a>
-                </div>
-                <a href="javascript:void(0);" class="btn btn-primary tm-btn-next">Next Page</a>
-            </div>            
-        </div>
+        
     </div> <!-- container-fluid, tm-container-content -->
 
     <footer class="tm-bg-gray pt-5 pb-3 tm-text-gray tm-footer">

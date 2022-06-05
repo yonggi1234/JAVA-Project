@@ -68,19 +68,12 @@
                     <div class="form-group">
                         <input type="tel" name="phoneNumber" class="form-control rounded-0" placeholder="phoneNumber" required />
                     </div>
-                    
                     <div class="form-group">
-                        <input type="text" name="address" class="form-control rounded-0" placeholder="address" required />
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="email" name="email" class="form-control rounded-0" placeholder="Email" required />
-                    </div>
-                    <div class="form-group">
-                        <select class="form-control" id="contact-select" name="subject">
-                            <option value="-">subject</option>
-                            <option value="student">Student</option>
-                            <option value="professor">Other</option>
+                        <select class="form-control" id="contact-select" name="address">
+                            <option value="">사는 곳</option>
+                            <option value="수원시">수원시</option>
+                            <option value="화성시">화성시</option>
+                            <option value="오산시">오산시</option>
                         </select>
                     </div>
                     <!-- 

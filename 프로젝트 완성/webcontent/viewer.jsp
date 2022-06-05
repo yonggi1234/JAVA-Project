@@ -33,19 +33,12 @@ https://templatemo.com/tm-556-catalog-z
 	final ResultSet rs = wtDAO.getOneWt(num);
 	rs.next();
 	%>
-    <!-- Page Loader -->
-    <div id="loader-wrapper">
-        <div id="loader"></div>
-
-        <div class="loader-section section-left"></div>
-        <div class="loader-section section-right"></div>
-
-    </div>
+   
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="#">
                 <i class="fas fa-film mr-2"></i>
-                Catalog-Z
+                KUOM
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
@@ -53,16 +46,13 @@ https://templatemo.com/tm-556-catalog-z
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link nav-link-1" href="index.html">Photos</a>
+                    <a class="nav-link nav-link-1 active" aria-current="page" href="home.jsp">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-2" href="videos.html">Videos</a>
+                    <a class="nav-link nav-link-3" href="board.jsp">board</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-3 active" aria-current="page" href="about.html">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-4" href="contact.html">Contact</a>
+                    <a class="nav-link nav-link-4" href="user.jsp">user</a>
                 </li>
             </ul>
             </div>
@@ -81,7 +71,12 @@ https://templatemo.com/tm-556-catalog-z
         </div>
         <div class="row tm-mb-74 tm-row-1640">            
             <div class="col-lg-5 col-md-6 col-12 mb-3">
-                <img src="img/img-03.jpg" alt="Image" class="img-fluid">
+                 <%if(rs.getString("img_data")!=null){
+	               %>
+	               <img src="<%=rs.getString("img_data") %>" alt="Image" class="img-fluid">
+	               <%}else{ %>
+	               <img src="img/none.png" alt="Image" class="img-fluid">
+	               <%}%>
             </div>
             <div class="col-lg-7 col-md-6 col-12">
                 <div class="tm-about-img-text">
